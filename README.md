@@ -2,7 +2,7 @@
 
 ## Masked Face Recognition Pipeline
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/SEU_USUARIO_GITHUB/masked-face-recognition-pipeline/blob/main/notebooks/reconhecimento_facial.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ATRRCVrzh37h7hFUbNL8BefTb4DW39Uu?usp=sharing)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Institution](https://img.shields.io/badge/PUCRS-Escola_Politécnica-maroon.svg)](https://www.pucrs.br/)

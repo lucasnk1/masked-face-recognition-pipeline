@@ -107,9 +107,9 @@ Clique no selo no topo deste README ou acesse o notebook no Colab para rodar o c
    pip install face_recognition chromadb facedb gdown
    ```
 3. **Inicie o Jupyter Notebook:**
-```
-jupyter notebook notebooks/reconhecimento_facial.ipynb
-```
+   ```
+   jupyter notebook notebooks/reconhecimento_facial.ipynb
+   ```
 
 ## Stacks utilizadas
 

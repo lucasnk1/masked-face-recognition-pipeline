@@ -47,11 +47,10 @@ A implementação prática valida o fluxo de busca vetorial utilizando 3 imagens
 ### Fluxo de Execução:
 1. **Download & Exibição:** Obtenção das 3 imagens via `gdown` e verificação visual com `PIL`.
 
-<p align="center">
-  <img src="data/pessoa1.png" width="30%" alt="Pessoa 1" />
-  <img src="data/pessoa2.png" width="30%" alt="Pessoa 2" />
-  <img src="data/desconhecido.png" width="30%" alt="Desconhecido" />
-</p>
+| Pessoa 1 | Pessoa 2 | Desconhecido |
+| :---: | :---: | :---: |
+| <img src="data/pessoa1.png" width="250" alt="Descrição 1"> | <img src="data/pessoa2.png" width="250" alt="Descrição 2"> | <img src="data/desconhecido.png" width="250" alt="Descrição 3"> |
+| *Legenda da foto 1* | *Legenda da foto 2* | *Legenda da foto 3* |
 
 2. **Detecção & Embeddings (`face_recognition`):**
    * Detecção da face via algoritmo `HOG`.

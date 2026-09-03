@@ -49,8 +49,7 @@ A implementação prática valida o fluxo de busca vetorial utilizando 3 imagens
 
 | Pessoa 1 | Pessoa 2 | Desconhecido |
 | :---: | :---: | :---: |
-| <img src="data/pessoa1.png" width="250" alt="Descrição 1"> | <img src="data/pessoa2.png" width="250" alt="Descrição 2"> | <img src="data/desconhecido.png" width="250" alt="Descrição 3"> |
-| *Legenda da foto 1* | *Legenda da foto 2* | *Legenda da foto 3* |
+| <img src="data/pessoa1.png" width="250"> | <img src="data/pessoa2.png" width="250"> | <img src="data/desconhecido.png" width="250"> |
 
 2. **Detecção & Embeddings (`face_recognition`):**
    * Detecção da face via algoritmo `HOG`.

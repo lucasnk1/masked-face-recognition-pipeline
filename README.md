@@ -94,11 +94,6 @@ O notebook implementa um fluxo completo de identificação e busca por similarid
 └────────────────────┘
 ```
 
-### Resultados dos Testes Práticos
-* **Métrica de Distância Euclidiana (`face_recognition`):** Limiar oficial menor que 0.6 indica a mesma pessoa.
-* **ChromaDB:** Identificou com precisão a pessoa correspondente no banco vetorial (*distância de 0.119*).
-* **FaceDB:** Classificou e reconheceu a face com **88% de confiança**.
-
 ---
 
 ## Estrutura do Repositório
@@ -121,7 +116,7 @@ Clique no selo no topo deste README ou acesse o notebook no Colab para rodar o c
 
 1. **Clone o repositório:**
    ```
-   git clone [https://github.com/lucasnk1/masked-face-recognition-pipeline.git](https://github.com/lucasnk1/masked-face-recognition-pipeline.git)
+   git clone https://github.com/lucasnk1/masked-face-recognition-pipeline.git
    cd masked-face-recognition-pipeline
    ```
 

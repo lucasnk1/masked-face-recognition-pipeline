@@ -65,6 +65,8 @@ A implementação prática valida o fluxo de busca vetorial utilizando 3 imagens
    * Recriação da base e teste de reconhecimento direto.
    * **Resultado FaceDB:** Identificou `Pessoa 1` com **88% de confiança**.
 
+   <img src="data/print_resultados.png" width="250">
+
 ---
 
 ## 🛠️ Pipeline Prático Implementado

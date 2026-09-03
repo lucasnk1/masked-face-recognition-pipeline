@@ -15,33 +15,50 @@
 
 ## Visão Geral
 
-Com a pandemia da COVID-19, o uso maciço de máscaras faciais introduziu um desafio crítico para os sistemas de Visão Computacional. A oclusão da metade inferior do rosto atua como **ruído estruturado**, fazendo com que modelos tradicionais percam sinal útil e ganhem informações irrelevantes (texturas, dobras e estampas da máscara).
-
-Este repositório analisa os avanços científicos apontados pela literatura para contornar essa limitação e demonstra uma **implementação prática de um pipeline de reconhecimento facial baseado em embeddings de 128 dimensões e bancos de dados vetoriais**.
+Este repositório reúne a resolução do trabalho acadêmico estruturado em duas etapas principais:
+1. **Pesquisa Acadêmica:** Análise do artigo *"A survey on computer vision based human analysis in the COVID-19 era"*, cobrindo o impacto do uso de máscaras faciais em sistemas de visão computacional, soluções de detecção/reconhecimento e levantamento de datasets.
+2. **Demonstração Prática (Notebook):** Construção de um pipeline completo em Python para download de imagens, extração de embeddings faciais de 128D, cálculo de similaridade e busca vetorial com **ChromaDB** e **FaceDB** sobre um conjunto de teste com 3 imagens (`pessoa1.jpg`, `pessoa2.jpg` e `desconhecido.jpg`).
 
 ---
 
-## Síntese da Pesquisa Teórica
+## Parte 1: Pesquisa Teórica
 
-Baseado no artigo científico *"A survey on computer vision based human analysis in the COVID-19 era"*:
+### 1. Impacto das Máscaras Faciais na Visão Computacional
+O uso em massa de máscaras durante a pandemia removeu grande parte da informação útil do rosto, atuando como **ruído estruturado** (padrões de cor, dobras e estampas sem relação com a identidade). O modelo perde sinal descritivo e ganha ruído irrelevante: duas pessoas distintas com máscaras parecidas tornam-se mais semelhantes para a rede, enquanto a mesma pessoa com e sem máscara perde similaridade.
 
-### 1. Detecção de Rosto e Máscara
-A estratégia consolida-se em um pipeline de duas etapas (detecção + classificação):
-* **Detectores:** Adaptação de modelos como MTCNN, RetinaFace, SSD, Faster R-CNN e variações da YOLO (v2, v3 e v5).
-* **Modelos Notáveis:** 
-  * `SSDMNV2`: Combinação de SSD com MobileNetV2 para uso leve em dispositivos móveis.
-  * `SE-YOLOv3`: Uso de blocos Squeeze-and-Excitation e *focal loss*.
-  * `SRCNet`: Aplicação de super-resolução em imagens com menos de 150×150 px.
-
-### 2. Estratégias para Reconhecimento Facial com Máscara
-1. **In-painting:** Apaga a máscara e reconstrói a parte inferior da face digitalmente.
-2. **Template Unmasking:** Transforma o vetor de características (*template*) para que se comporte como um rosto sem máscara.
-3. **Otimização do Modelo:** Retreinamento de redes usando funções de perda adaptadas (ArcFace multitarefa, *triplet loss* e maiores margens).
-4. **Reconhecimento Periocular:** Foco exclusivo no vetor das regiões dos olhos e sobrancelhas.
+### 2. Técnicas Desenvolvidas
+* **Detecção (Com/Sem/Máscara Incorreta):** Uso de detectores como MTCNN, RetinaFace, SSD e variações da YOLO (v2, v3, v5) combinados com classificadores (Inception-v3, MobileNetV2, EfficientNet). Destacam-se o `SSDMNV2` (leve para celulares), `SE-YOLOv3` e `SRCNet` (super-resolução para faces pequenas).
+* **Reconhecimento Facial:**
+  1. *In-painting:* Reconstrução digital da parte coberta.
+  2. *Template Unmasking:* Ajuste do vetor de características para simular a face sem máscara.
+  3. *Otimização do Modelo:* Retreino com funções de perda adaptadas (ArcFace multitarefa, *triplet loss*).
+  4. *Reconhecimento Periocular:* Uso exclusivo da região dos olhos e sobrancelhas.
 
 ### 3. Datasets Analisados
-* **Bases Reais:** `MAFA` (30.811 imagens com oclusões), `ISL-UFMD/ISL-UFHD` (diversidade étnica e variações de uso correto/incorreto) e `BAFMD`.
-* **Bases Sintéticas:** `MaskedFace-Net` (137k imagens) e `MS1MV2-Masked` (~57,5M de imagens simuladas).
+* **Bases Reais:** `MAFA` (30k+ imagens), `ISL-UFMD/ISL-UFHD` (foco em diversidade étnica/uso correto e incorreto) e `BAFMD`.
+* **Bases Sintéticas:** `MaskedFace-Net` (137k imagens) e `MS1MV2-Masked` (~57,5M de imagens).
+
+---
+
+## Parte 2: Pipeline Prático (Notebook)
+
+A implementação prática valida o fluxo de busca vetorial utilizando 3 imagens baixadas via Google Drive (`gdown`): `pessoa1.jpg`, `pessoa2.jpg` e uma imagem de teste `desconhecido.jpg`.
+
+### Fluxo de Execução:
+1. **Download & Exibição:** Obtenção das 3 imagens via `gdown` e verificação visual com `PIL`.
+2. **Detecção & Embeddings (`face_recognition`):**
+   * Detecção da face via algoritmo `HOG`.
+   * Geração do vetor/embedding de 128 dimensões da `pessoa1.jpg`.
+3. **Comparação de Similaridade (`pessoa1` vs `pessoa2`):**
+   * Cálculo de similaridade de cosseno (resultado ~`0.87`).
+   * Métrica oficial de distância euclidiana (`0.738` -> confirmado como pessoas diferentes, pois requer `< 0.6`).
+4. **Indexação e Busca Vetorial com ChromaDB:**
+   * Cadastro dos vetores da `pessoa1` e `pessoa2` no banco vetorial.
+   * Consulta do embedding da imagem `desconhecido.jpg`.
+   * **Resultado ChromaDB:** Retornou `Pessoa 1` com distância de `0.119`.
+5. **Reconhecimento Simplificado com FaceDB:**
+   * Recriação da base e teste de reconhecimento direto.
+   * **Resultado FaceDB:** Identificou `Pessoa 1` com **88% de confiança**.
 
 ---
 

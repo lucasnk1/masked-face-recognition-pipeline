@@ -108,7 +108,6 @@ masked-face-recognition-pipeline/
 ├── data/                           # Imagens de exemplo utilizadas no teste
 ├── notebooks/
 │   └── reconhecimento_facial.ipynb # Notebook principal do Colab
-├── .gitignore                      # Arquivo para ignorar os bancos locais gerados
 ├── LICENSE                         # Licença do repositório
 └── README.md                       # Documentação do projeto
 ```
